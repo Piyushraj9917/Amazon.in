@@ -1,0 +1,10 @@
+<suite name="Suite">
+    <listeners>
+        <listener class-name="TestComponents.Listener"/>
+    </listeners>
+    <test name="Test">
+        <classes>
+            <class name="Tests.LoginAndAuthentication"/>
+        </classes>
+    </test>
+</suite>

@@ -1,13 +1,11 @@
 package Tests;
 
 import PageObject.ValidLogin;
-import PageObject.SearchFeature;
+import PageObject.PositiveSearch;
 import TestComponents.BaseTest;
-import org.apache.commons.math3.analysis.function.Cos;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
+import TestComponents.Retry;
+import org.testng.IRetryAnalyzer;
 import org.testng.annotations.Test;
-import org.testng.asserts.Assertion;
 import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
@@ -19,7 +17,7 @@ import static Utils.DatabaseUtils.ExecuteQuery;
 
 public class LoginAndAuthentication extends BaseTest {
     ValidLogin LoginOBJ;
-    SearchFeature search;
+    PositiveSearch search;
 
     @Test
     public void AmazonLogin() throws SQLException, IOException {
@@ -28,7 +26,7 @@ public class LoginAndAuthentication extends BaseTest {
         search = LoginOBJ.ValidPassword();
     }
 
-    @Test
+    @Test(retryAnalyzer = Retry.class)
     public void ProductSearch() throws SQLException, IOException {
         SoftAssert assertion = new SoftAssert();
         ArrayList VLogin = ExecuteQuery("select * from ValidLogin");
@@ -52,7 +50,6 @@ public class LoginAndAuthentication extends BaseTest {
                 Boolean IsRatingAvailable = (IndividualiphoneRating == null || IndividualiphoneRating.isEmpty());
             assertion.assertFalse(IsRatingAvailable);
         }
-
         List<String> AvailabilityList = search.Availability();
         for(String IphoneAvailable : AvailabilityList)
         {

@@ -26,7 +26,7 @@ public class ValidLogin extends AbstractClass {
     @FindBy(id="signInSubmit") WebElement SignIn;
     @FindBy(xpath ="//span[@class='a-list-item']") WebElement Error;
 
-    public SearchFeature ValidPassword() throws SQLException, IOException {
+    public PositiveSearch ValidPassword() throws SQLException, IOException {
         ArrayList AmazonDBdata = ExecuteQuery("select * from InvalidCred");
         //WaitForElementToAppear(MobileNumber);
         String[] FirstRow = (String[]) AmazonDBdata.getFirst();
@@ -34,7 +34,7 @@ public class ValidLogin extends AbstractClass {
         Continue.click();
         Password.sendKeys(FirstRow[1]);
         SignIn.click();
-        return new SearchFeature(driver);
+        return new PositiveSearch(driver);
     }
     /*
     @FindBy(css =".a-link-normal") WebElement BackToEmailField;

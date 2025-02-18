@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static Utils.DatabaseUtils.ExecuteQuery;
-public class SearchFeature extends AbstractClass {
+public class PositiveSearch extends AbstractClass {
     public WebDriver driver;
 
-    public SearchFeature(WebDriver driver) throws SQLException, IOException {
+    public PositiveSearch(WebDriver driver) throws SQLException, IOException {
         super(driver);
         this.driver =driver;
         PageFactory.initElements(driver,this);
