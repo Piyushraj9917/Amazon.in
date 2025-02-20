@@ -1,10 +1,33 @@
-<suite name="Suite">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
     <listeners>
         <listener class-name="TestComponents.Listener"/>
     </listeners>
-    <test name="Test">
+    <test verbose="2" preserve-order="true" name="/Users/ahlawat/Downloads/Amazon.in">
         <classes>
-            <class name="Tests.LoginAndAuthentication"/>
+
+            <class name="Tests.DetailsAndCart">
+                <methods>
+                    <include name = "LoginforDetailAndCart"/>
+                    <include name="Validation"/>
+                </methods>
+            </class>
+
+            <class name="Tests.AuthenticationAndLogin">
+                <methods>
+                    <include name="AmazonLogin"/>
+                    <include name="ProductSearch"/>
+                </methods>
+            </class>
+
+            <class name="Tests.InvalidCase">
+                <methods>
+                    <include name="LoginforInvalidCase"/>
+                    <include name="InvalidProductSearch"/>
+                </methods>
+            </class>
+
         </classes>
     </test>
 </suite>

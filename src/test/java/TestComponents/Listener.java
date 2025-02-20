@@ -12,11 +12,10 @@ import java.io.IOException;
 
 public class Listener extends BaseTest implements ITestListener {
     ExtentTest test;
-    ExtentReports extent;
+    static ExtentReports extent = ExtentManager.GetReportObject();  // Create ExtentReports only ONCE
     ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>();
     @Override
     public void onTestStart(ITestResult result) {
-        extent = ExtentManager.GetReportObject();
         test = extent.createTest(result.getMethod().getMethodName());
         extentTest.set(test);
     }
@@ -48,7 +47,6 @@ public class Listener extends BaseTest implements ITestListener {
     @Override
     public void onFinish(ITestContext context)
     {
-            if(extent!=null)
             {
                 extent.flush();
             }

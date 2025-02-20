@@ -1,10 +1,10 @@
 package Tests;
 
-import PageObject.ValidLogin;
+import AbstractComponents.AbstractClass;
 import PageObject.PositiveSearch;
 import TestComponents.BaseTest;
 import TestComponents.Retry;
-import org.testng.IRetryAnalyzer;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -15,22 +15,22 @@ import java.util.List;
 
 import static Utils.DatabaseUtils.ExecuteQuery;
 
-public class LoginAndAuthentication extends BaseTest {
-    ValidLogin LoginOBJ;
+public class AuthenticationAndLogin extends BaseTest {
     PositiveSearch search;
 
     @Test
     public void AmazonLogin() throws SQLException, IOException {
         lp.LaunchAmazon();
-        LoginOBJ = lp.GoToLoginPage();
-        search = LoginOBJ.ValidPassword();
+        lp.GoToLoginPage();
+        AbstractClass.Login();
     }
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test
     public void ProductSearch() throws SQLException, IOException {
         SoftAssert assertion = new SoftAssert();
         ArrayList VLogin = ExecuteQuery("select * from ValidLogin");
         String[] RowOne = (String[]) VLogin.getFirst();
+        search = new PositiveSearch(driver);
         search.ValidProductSearch();
         List<String> NamesList= search.GetProductNames();
         for(String Names : NamesList)

@@ -1,3 +1,4 @@
+/*
 package PageObject;
 
 import AbstractComponents.AbstractClass;
@@ -14,29 +15,11 @@ import static Utils.DatabaseUtils.ExecuteQuery;
 
 public class ValidLogin extends AbstractClass {
     WebDriver driver;
-
     public ValidLogin(WebDriver driver) {
         super(driver);
         this.driver =driver;
         PageFactory.initElements(driver,this);
     }
-    @FindBy(css = ".a-input-text") private WebElement MobileNumber;
-    @FindBy(css = "input[class='a-button-input']") WebElement Continue;
-    @FindBy(id = "ap_password") WebElement Password;
-    @FindBy(id="signInSubmit") WebElement SignIn;
-    @FindBy(xpath ="//span[@class='a-list-item']") WebElement Error;
-
-    public PositiveSearch ValidPassword() throws SQLException, IOException {
-        ArrayList AmazonDBdata = ExecuteQuery("select * from InvalidCred");
-        //WaitForElementToAppear(MobileNumber);
-        String[] FirstRow = (String[]) AmazonDBdata.getFirst();
-        MobileNumber.sendKeys(FirstRow[0]);
-        Continue.click();
-        Password.sendKeys(FirstRow[1]);
-        SignIn.click();
-        return new PositiveSearch(driver);
-    }
-    /*
     @FindBy(css =".a-link-normal") WebElement BackToEmailField;
     @FindBy(css = ".a-input-text") private WebElement Email;
     public void InvalidEmail() throws SQLException, IOException {
@@ -60,5 +43,5 @@ public class ValidLogin extends AbstractClass {
         SignIn.click();
         return new SearchFeature(driver);
     }
-     */
-}
+    }
+ */

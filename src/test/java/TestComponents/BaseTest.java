@@ -46,8 +46,9 @@ public abstract class BaseTest {
     public String TakeScreenshot(String Methodname, WebDriver driver) throws IOException {
         TakesScreenshot ScreenShot = ((TakesScreenshot)driver);
         File src = ScreenShot.getScreenshotAs(OutputType.FILE);
-        File file = new File(System.getProperty("user.dir")+"/report/"+Methodname+".png");
-        String ScreenshotPath = System.getProperty("user.dir")+"//report"+Methodname+".png";
+
+        String ScreenshotPath = System.getProperty("user.dir")+"/report"+Methodname+".png";
+        File file = new File(ScreenshotPath);
         FileUtils.copyFile(src, file);
         return ScreenshotPath;
     }
