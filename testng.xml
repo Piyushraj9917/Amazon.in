@@ -7,13 +7,6 @@
     <test verbose="2" preserve-order="true" name="/Users/ahlawat/Downloads/Amazon.in">
         <classes>
 
-            <class name="Tests.DetailsAndCart">
-                <methods>
-                    <include name = "LoginforDetailAndCart"/>
-                    <include name="Validation"/>
-                </methods>
-            </class>
-
             <class name="Tests.AuthenticationAndLogin">
                 <methods>
                     <include name="AmazonLogin"/>
@@ -27,6 +20,14 @@
                     <include name="InvalidProductSearch"/>
                 </methods>
             </class>
+
+            <class name="Tests.DetailsAndCart">
+                <methods>
+                    <include name = "LoginforDetailAndCart"/>
+                    <include name="Validation"/>
+                </methods>
+            </class>
+
 
         </classes>
     </test>

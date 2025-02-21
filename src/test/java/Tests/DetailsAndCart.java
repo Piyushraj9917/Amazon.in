@@ -19,17 +19,18 @@ public class DetailsAndCart extends BaseTest {
         lp.GoToLoginPage();
         AbstractClass.Login();
     }
-
     @Test
     public void Validation() throws SQLException, IOException {
         pd = new ProductDetails(driver);
         pd.ProductPage();
         String IphoneTitle = pd.ProductTitleValidation();
-        Assert.assertEquals(IphoneTitle, "Apple iPhone 13 (128GB) - (Product) RED");
+        Assert.assertEquals(IphoneTitle, "Apple iPhone 13 (128GB) - Midnight");
         String SplitPrice = pd.PriceValidation();
         Assert.assertEquals(SplitPrice, "43,499");
 
-        Assert.assertEquals(pd.RatingValidation(),"4.5 out of 5 stars");
+        String VerifyText = pd.RatingValidation();
+        Assert.assertEquals(VerifyText,"4.5 out of 5 stars");
+
         Assert.assertTrue(pd.CartButtonAvailable());
         pd.AddToCart();
     }

@@ -1,6 +1,7 @@
 package PageObject;
 
 import AbstractComponents.AbstractClass;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,8 +26,9 @@ public class ProductDetails extends AbstractClass {
     @FindBy(css = "div.a-section.aok-relative.s-image-fixed-height") WebElement Product;
     @FindBy(id = "productTitle") WebElement ProductTitle;
     @FindBy(css = ".a-price.aok-align-center.reinventPricePriceToPayMargin.priceToPay") WebElement iPhonePrice;
-    @FindBy(css = ".a-icon.a-icon-star.a-star-4-5.cm-cr-review-stars-spacing-big span") WebElement iPhoneRating;
+    @FindBy(xpath = "//i[contains(@class,'cm-cr-review-stars-spacing-big')]/span[text()='4.5 out of 5 stars']") WebElement iPhoneRating;
     @FindBy(xpath = "//input[@id='add-to-cart-button' and @value='Add to cart']") WebElement AddToCart;
+    @FindBy(css = ".attach-view-cart-button span input") WebElement CartButton;
 
     public void ProductPage()
     {
@@ -51,20 +53,24 @@ public class ProductDetails extends AbstractClass {
         String[] SplitArray = Price.split("\\u20B9");
         String SplitPrice = SplitArray[1];
         return SplitPrice;
-
     }
     public String RatingValidation()
     {
-        String RatingText = iPhoneRating.getText();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+       String RatingText= (String) js.executeScript("return arguments[0].textContent;",iPhoneRating);
+        System.out.println(RatingText+" is the Rating fetched");
         return RatingText;
     }
     public Boolean CartButtonAvailable()
     {
+        WaitForElementToAppear(AddToCart);
         Boolean CartButtonVisible = AddToCart.isDisplayed();
         return CartButtonVisible;
     }
     public void AddToCart()
     {
         AddToCart.click();
+        WaitForElementToAppear(CartButton);
+        CartButton.click();
     }
 }
