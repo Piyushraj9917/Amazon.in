@@ -7,27 +7,12 @@
     <test verbose="2" preserve-order="true" name="/Users/ahlawat/Downloads/Amazon.in">
         <classes>
 
-            <class name="Tests.AuthenticationAndLogin">
+            <class name ="Tests.GuestUser">
                 <methods>
-                    <include name="AmazonLogin"/>
-                    <include name="ProductSearch"/>
+                    <include name="GuestLaunch"/>
+                    <include name="GuestCartAndCheckout" />
                 </methods>
             </class>
-
-            <class name="Tests.InvalidCase">
-                <methods>
-                    <include name="LoginforInvalidCase"/>
-                    <include name="InvalidProductSearch"/>
-                </methods>
-            </class>
-
-            <class name="Tests.DetailsAndCart">
-                <methods>
-                    <include name = "LoginforDetailAndCart"/>
-                    <include name="Validation"/>
-                </methods>
-            </class>
-
 
         </classes>
     </test>
